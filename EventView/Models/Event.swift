@@ -9,17 +9,19 @@
 import Foundation
 
 class Event: Codable {
-    // Unique event identifier
+    /// Unique event identifier
     let id: Int
     
     let name: String
     
-    // Dates in YYYY-MM-DD hh:mm:ss format
+    /// Start Date in YYYY-MM-DD hh:mm:ss format
     let start: String
+    
+    /// End Date in YYYY-MM-DD hh:mm:ss format
     let end: String
     
     let location: String
     
-    // Number of people attending event
+    /// Number of people attending event
     let attending: Int
 }
