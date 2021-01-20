@@ -7,25 +7,30 @@
 //
 
 import Foundation
+import Alamofire
 
 class EventAPIClient {
-    func getEventList() -> [Event]? {
-        return []
+    static let baseURL: String = "https://jir8pypexa.execute-api.us-west-1.amazonaws.com/api"
+    
+    static func getEventList() {
+        AF.request(baseURL + "/events").response { response in
+            print(response)
+        }
     }
     
-    func getEventWith(eventID: String) -> Event? {
+    static func getEventWith(eventID: String) -> Event? {
         return nil
     }
     
-    func setUserIsAttendingEventWith(eventID: String) {
+    static func setUserIsAttendingEventWith(eventID: String) {
         
     }
     
-    func attemptLogin(user: User) {
+    static func attemptLogin(user: User) {
         
     }
     
-    func attemptSignup(user: User) {
+    static func attemptSignup(user: User) {
         
     }
 }
