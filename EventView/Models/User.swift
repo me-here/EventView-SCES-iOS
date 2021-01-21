@@ -11,4 +11,11 @@ import Foundation
 class User: Codable {
     let username: String
     let password: String
+    
+    func encode() -> [String: String] {
+        return [
+            "username": self.username,
+            "password": self.password
+        ]
+    }
 }

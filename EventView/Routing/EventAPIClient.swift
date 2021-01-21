@@ -83,11 +83,21 @@ class EventAPIClient {
 
 // MARK: Authentication features
 extension EventAPIClient {
-    static func attemptLogin(user: User) {
-        
+    static func attemptLogin(user: User, handle: @escaping (Result<(), AuthError>)->()) {
+        AF.request("\(baseURL)/login", method: .post, parameters: user.encode()).response { response in
+            guard response.error == nil else {  // Not 200 --> .loginFailure
+                handle(.failure(.loginFailure))
+                return
+            }
+        }
     }
     
-    static func attemptSignup(user: User) {
-        
+    static func attemptSignup(user: User, handle: @escaping (Result<(), AuthError>)->()) {
+        AF.request("\(baseURL)/signup", method: .post, parameters: user.encode()).response { response in
+            guard response.error == nil else {
+                handle(.failure(.usernameTaken))
+                return
+            }
+        }
     }
 }
