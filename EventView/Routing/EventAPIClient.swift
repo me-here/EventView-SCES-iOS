@@ -19,33 +19,65 @@ enum AuthError: String, Error {
     case usernameTaken = "Sorry, that username is already taken. Please take another one."
 }
 
+// MARK: Event features
 class EventAPIClient {
     static let baseURL: String = "https://jir8pypexa.execute-api.us-west-1.amazonaws.com/api"
     
     static func getEventList(handle: @escaping (Result<[Event], EventAPIError>) -> ()) {
-        AF.request(baseURL + "/events").response { response in
-            guard response.error == nil else {
-                // Error handling
+        AF.request("\(baseURL)/events").response { response in
+            guard let data = response.data, response.error == nil else {
+                handle(.failure(.networkError))
                 return
             }
             
-            guard let data = response.data else { return }
             do {
                 let eventList = try JSONDecoder().decode([Event].self, from: data)
-                print(eventList[0].name)
+                handle(.success(eventList))
             } catch {
-                
+                handle(.failure(.networkError))
             }
-            
         }
     }
     
-    static func getEventWith(eventID: String) -> Event? {
-        return nil
+    static func getEventWith(eventID: String, handle: @escaping (Result<Event, EventAPIError>)->()) {
+        AF.request("\(baseURL)/events/\(eventID)").response { response in
+            guard let data = response.data, response.error == nil else {
+                let code = response.error?.responseCode ?? 400
+                
+                switch code {
+                case 404:
+                    handle(.failure(.eventNotFound))
+                default:
+                    handle(.failure(.networkError))
+                }
+                
+                return
+            }
+            
+            do {
+                let eventList = try JSONDecoder().decode(Event.self, from: data)
+                handle(.success(eventList))
+            } catch {
+                handle(.failure(.networkError))
+            }
+        }
     }
     
-    static func setUserIsAttendingEventWith(eventID: String) {
-        
+    static func setUserIsAttendingEventWith(eventID: String, handle: @escaping (Result<(), EventAPIError>)->()) {
+        AF.request("\(baseURL)/events/\(eventID)", method: .post).response { response in
+            guard response.error == nil else {
+                let code = response.error?.responseCode ?? 400
+                
+                switch code {
+                case 404:
+                    handle(.failure(.eventNotFound))
+                default:
+                    handle(.failure(.networkError))
+                }
+                
+                return
+            }
+        }
     }
 }
 
