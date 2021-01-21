@@ -12,7 +12,15 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        EventAPIClient.getEventList(handle: { result in
+            switch result {
+            case .success(let eventList):
+                print(eventList[0])
+            case .failure(let error):
+                print(error.rawValue)
+            }
+        })
+        
     }
 
 
