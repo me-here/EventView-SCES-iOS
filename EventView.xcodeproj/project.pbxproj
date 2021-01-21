@@ -109,6 +109,7 @@
 		437FFEF725B8E36200DCCC19 /* EventView */ = {
 			isa = PBXGroup;
 			children = (
+				437FFF2925BA19B600DCCC19 /* Views */,
 				437FFF1125B8ED5E00DCCC19 /* Routing */,
 				437FFF0C25B8E42F00DCCC19 /* Models */,
 				437FFEF825B8E36200DCCC19 /* AppDelegate.swift */,
@@ -146,6 +147,13 @@
 				437FFF1F25B8F08000DCCC19 /* Info.plist */,
 			);
 			path = EventViewTests;
+			sourceTree = "<group>";
+		};
+		437FFF2925BA19B600DCCC19 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
