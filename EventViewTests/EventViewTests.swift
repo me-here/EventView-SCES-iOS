@@ -10,7 +10,11 @@ import XCTest
 @testable import EventView
 
 class EventViewTests: XCTestCase {
-    func testGetEvents() throws {
-        EventAPIClient.getEventList()
-    }
+//    func testGetEvents() throws {
+//        EventAPIClient.getEventList()
+//    }
+//    
+//    func testFormatTime() {
+//        event = Event()
+//    }
 }

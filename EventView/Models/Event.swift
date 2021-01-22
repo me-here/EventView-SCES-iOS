@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Event: Codable {
+struct Event: Codable {
     /// Unique event identifier
     let id: Int
     

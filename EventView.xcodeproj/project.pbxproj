@@ -18,6 +18,7 @@
 		437FFF1325B8ED8200DCCC19 /* EventAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437FFF1225B8ED8200DCCC19 /* EventAPIClient.swift */; };
 		437FFF1E25B8F08000DCCC19 /* EventViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437FFF1D25B8F08000DCCC19 /* EventViewTests.swift */; };
 		437FFF3025BA7E4A00DCCC19 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437FFF2F25BA7E4A00DCCC19 /* EventsTableViewController.swift */; };
+		437FFF3225BA86BA00DCCC19 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437FFF3125BA86BA00DCCC19 /* EventTableViewCell.swift */; };
 		97B16A740BE6025BBF8394AD /* Pods_EventView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C545DD4786765AC5DBA263 /* Pods_EventView.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		437FFF1D25B8F08000DCCC19 /* EventViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewTests.swift; sourceTree = "<group>"; };
 		437FFF1F25B8F08000DCCC19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		437FFF2F25BA7E4A00DCCC19 /* EventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
+		437FFF3125BA86BA00DCCC19 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		4DDA7EF5F7F0814C4A6D1624 /* Pods-EventView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventView.debug.xcconfig"; path = "Target Support Files/Pods-EventView/Pods-EventView.debug.xcconfig"; sourceTree = "<group>"; };
 		89C545DD4786765AC5DBA263 /* Pods_EventView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EventView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B7F6A6B964A89D1030F7483 /* Pods-EventView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventView.release.xcconfig"; path = "Target Support Files/Pods-EventView/Pods-EventView.release.xcconfig"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			children = (
 				437FFEFE25B8E36200DCCC19 /* Main.storyboard */,
 				437FFF0325B8E36600DCCC19 /* LaunchScreen.storyboard */,
+				437FFF3125BA86BA00DCCC19 /* EventTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				437FFF3225BA86BA00DCCC19 /* EventTableViewCell.swift in Sources */,
 				437FFF0E25B8E44100DCCC19 /* User.swift in Sources */,
 				437FFF3025BA7E4A00DCCC19 /* EventsTableViewController.swift in Sources */,
 				437FFEFD25B8E36200DCCC19 /* LoginViewController.swift in Sources */,

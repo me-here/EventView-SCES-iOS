@@ -38,10 +38,10 @@ class EventsTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath)
-        print(eventList)
-        cell.textLabel?.text = eventList[indexPath.row].name
-        cell.detailTextLabel?.text = eventList[indexPath.row].location
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath) as? EventTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(eventList[indexPath.row])
         return cell
     }
 
