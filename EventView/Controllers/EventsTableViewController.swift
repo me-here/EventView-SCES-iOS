@@ -41,6 +41,7 @@ class EventsTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath) as? EventTableViewCell else {
             return UITableViewCell()
         }
+        print(eventList[indexPath.row].location)
         cell.configure(eventList[indexPath.row])
         return cell
     }
