@@ -109,15 +109,12 @@
 		437FFEF725B8E36200DCCC19 /* EventView */ = {
 			isa = PBXGroup;
 			children = (
-				437FFF2925BA19B600DCCC19 /* Views */,
 				437FFF1125B8ED5E00DCCC19 /* Routing */,
 				437FFF0C25B8E42F00DCCC19 /* Models */,
-				437FFEF825B8E36200DCCC19 /* AppDelegate.swift */,
-				437FFEFA25B8E36200DCCC19 /* SceneDelegate.swift */,
-				437FFEFC25B8E36200DCCC19 /* LoginViewController.swift */,
-				437FFEFE25B8E36200DCCC19 /* Main.storyboard */,
+				437FFF2E25BA7DA200DCCC19 /* Support Files */,
+				437FFF2C25BA7C1300DCCC19 /* Controllers */,
+				437FFF2D25BA7D7300DCCC19 /* View */,
 				437FFF0125B8E36600DCCC19 /* Assets.xcassets */,
-				437FFF0325B8E36600DCCC19 /* LaunchScreen.storyboard */,
 				437FFF0625B8E36600DCCC19 /* Info.plist */,
 			);
 			path = EventView;
@@ -149,11 +146,30 @@
 			path = EventViewTests;
 			sourceTree = "<group>";
 		};
-		437FFF2925BA19B600DCCC19 /* Views */ = {
+		437FFF2C25BA7C1300DCCC19 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				437FFEFC25B8E36200DCCC19 /* LoginViewController.swift */,
 			);
-			path = Views;
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		437FFF2D25BA7D7300DCCC19 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				437FFEFE25B8E36200DCCC19 /* Main.storyboard */,
+				437FFF0325B8E36600DCCC19 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		437FFF2E25BA7DA200DCCC19 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				437FFEFA25B8E36200DCCC19 /* SceneDelegate.swift */,
+				437FFEF825B8E36200DCCC19 /* AppDelegate.swift */,
+			);
+			path = "Support Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
