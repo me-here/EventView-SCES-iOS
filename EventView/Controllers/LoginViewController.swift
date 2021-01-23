@@ -5,6 +5,7 @@
 //  Created by Mihir Thanekar on 1/20/21.
 //  Copyright © 2021 Mihir Thanekar. All rights reserved.
 //
+//  Main image on this screen is free for public, personal, and commercial use.
 
 import UIKit
 
@@ -33,7 +34,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func keyboardWillHide(notification: Notification) {
-        guard view.frame.origin.y != 0 else { return }  // what's the point of moving down if at bottom
+        guard view.frame.origin.y != 0 else { return }  // already at bottom? don't move down.
         view.frame.origin.y = 0
     }
     
