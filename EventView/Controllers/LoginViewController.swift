@@ -9,20 +9,19 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        EventAPIClient.getEventList(handle: { result in
-            switch result {
-            case .success(let eventList):
-                print(eventList[0])
-            case .failure(let error):
-                print(error.rawValue)
-            }
-        })
-        
+    @IBOutlet var usernameField: UITextField!
+    @IBOutlet var passwordField: UITextField!
+    
+    // The main purple button you press to login or register.
+    @IBOutlet var mainActionButton: UIButton!
+    var authMode: AuthMode = .signIn
+    
+    // Switches between login and register modes.
+    @IBAction func switchModeButtonTapped(_ sender: UIButton) {
+        authMode = authMode.other
+        sender.setTitle(authMode.other.name, for: .normal)
+        mainActionButton.setTitle(authMode.name, for: .normal)
     }
-
-
+    
 }
 

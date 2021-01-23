@@ -73,6 +73,9 @@
                                 <state key="normal" title="Register">
                                     <color key="titleColor" red="0.8901960784313725" green="0.84313725490196079" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="switchModeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LHe-LF-btd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -99,6 +102,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GP0-al-3Zo"/>
                     </view>
+                    <connections>
+                        <outlet property="mainActionButton" destination="jtb-WK-CfK" id="eo0-N8-ck3"/>
+                        <outlet property="passwordField" destination="VZE-FP-DQN" id="gwo-GT-omB"/>
+                        <outlet property="usernameField" destination="SsE-1i-qc6" id="1DQ-Lf-XJI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -196,7 +204,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="tQH-AM-OE3">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="iiD-wd-oHR">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="iiD-wd-oHR">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="L47-Ja-3Eg">
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
