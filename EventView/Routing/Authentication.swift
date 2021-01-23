@@ -64,6 +64,26 @@ struct Register: Authentication {
     }
 }
 
+struct CredentialManager {
+    private static let protectionSpace = URLProtectionSpace(host: SharedRouting.baseURL, port: 80, protocol: "https", realm: "Restricted", authenticationMethod: NSURLAuthenticationMethodHTTPBasic)
+    
+    /// Caches the credentials from a given User object into URLCredentialStorage, if it is not already in URLCredentialStorage.
+    func saveCredentials(user: User) {
+        let credential = URLCredential(user: user.username, password: user.password, persistence: .permanent)
+        guard let storedCred = URLCredentialStorage.shared.credentials(for: CredentialManager.protectionSpace)?[user.username], storedCred.user != credential.user, storedCred.password != credential.password else {
+            return
+        }
+        URLCredentialStorage.shared.set(credential, for: CredentialManager.protectionSpace)
+    }
+    
+    func getUserFromCachedCredentials() -> User? {
+        guard let credential = URLCredentialStorage.shared.defaultCredential(for: CredentialManager.protectionSpace) else { return nil }
+        guard let username = credential.user else { return nil }
+        guard let password = credential.password else { return nil }
+        return User(username: username, password: password)
+    }
+}
+
 // MARK: User facing view of states in auth.
 
 enum AuthMode {

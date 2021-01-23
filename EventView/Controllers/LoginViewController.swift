@@ -15,12 +15,22 @@ class LoginViewController: UIViewController {
     
     // The main purple button you press to login or register.
     @IBOutlet var mainActionButton: UIButton!
+    
+    // The auth mode is initially in the sign in state.
     var authMode: AuthMode = .signIn
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTextFields()
+        setupKeyboard()
+    }
+    
+    private func setupTextFields() {
         usernameField.delegate = self
         passwordField.delegate = self
+    }
+    
+    private func setupKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -53,6 +63,7 @@ class LoginViewController: UIViewController {
         authMode.authentication.authenticate(user: user, handle: { result in
             switch result {
             case .success:
+                CredentialManager().saveCredentials(user: user)
                 self.performSegue(withIdentifier: "authenticationSegue", sender: self)
             case .failure(let error):
                 self.showError(message: error.rawValue)
