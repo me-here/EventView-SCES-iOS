@@ -21,7 +21,7 @@ class EventsTableViewController: UITableViewController {
                 self.eventList = events
                 self.tableView.reloadData()
             case .failure(let error):
-                print("failed with \(error)")
+                self.showError(message: error.rawValue)
             }
         })
     }
@@ -50,5 +50,9 @@ class EventsTableViewController: UITableViewController {
             guard let rowTapped = tableView.indexPathForSelectedRow?.row else {return}
             detailVC.preConfigure(eventList[rowTapped])
         }
+    }
+    
+    @IBAction func logoutPressed(_ sender: Any) {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
 }

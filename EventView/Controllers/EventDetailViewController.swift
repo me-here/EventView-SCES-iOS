@@ -27,6 +27,7 @@ class EventDetailViewController: UIViewController {
         loadDataFromEvent()
     }
     
+    // Grabs what is in the event model object injects its elements into the view.
     func loadDataFromEvent() {
         locationLabel.text = event.location
         attendanceCount.text = "\(event.attending)"
@@ -44,9 +45,9 @@ class EventDetailViewController: UIViewController {
         EventAPIClient.setUserIsAttendingEventWith(eventID: "\(event.id)", handle: { result in
             switch result {
             case .success:
-                print("hooray!")
+                break
             case .failure(let error):
-                print(error)
+                self.showError(message: error.rawValue)
             }
         })
     }
