@@ -14,17 +14,10 @@ enum EventAPIError: String, Error {
     case eventNotFound = "The selected event was not found in our database. We are sorry."
 }
 
-enum AuthError: String, Error {
-    case loginFailure = "Sorry, your credentials were invalid or non-existent. Please try again."
-    case usernameTaken = "Sorry, that username is already taken. Please take another one."
-}
-
 // MARK: Event features
 class EventAPIClient {
-    static let baseURL: String = "https://jir8pypexa.execute-api.us-west-1.amazonaws.com/api"
-    
     static func getEventList(handle: @escaping (Result<[Event], EventAPIError>) -> ()) {
-        AF.request("\(baseURL)/events").response { response in
+        AF.request("\(RoutingConstants.baseURL)/events").response { response in
             guard let data = response.data, response.error == nil else {
                 handle(.failure(.networkError))
                 return
@@ -40,7 +33,7 @@ class EventAPIClient {
     }
     
     static func getEventWith(eventID: String, handle: @escaping (Result<Event, EventAPIError>)->()) {
-        AF.request("\(baseURL)/events/\(eventID)").response { response in
+        AF.request("\(RoutingConstants.baseURL)/events/\(eventID)").response { response in
             guard let data = response.data, response.error == nil else {
                 let code = response.error?.responseCode ?? 400
                 
@@ -64,7 +57,7 @@ class EventAPIClient {
     }
     
     static func setUserIsAttendingEventWith(eventID: String, handle: @escaping (Result<(), EventAPIError>)->()) {
-        AF.request("\(baseURL)/events/\(eventID)", method: .post).response { response in
+        AF.request("\(RoutingConstants.baseURL)/events/\(eventID)", method: .post).response { response in
             guard response.error == nil else {
                 let code = response.error?.responseCode ?? 400
                 
@@ -75,27 +68,6 @@ class EventAPIClient {
                     handle(.failure(.networkError))
                 }
                 
-                return
-            }
-        }
-    }
-}
-
-// MARK: Authentication features
-extension EventAPIClient {
-    static func attemptLogin(user: User, handle: @escaping (Result<(), AuthError>)->()) {
-        AF.request("\(baseURL)/login", method: .post, parameters: user.encode()).response { response in
-            guard response.error == nil else {  // Not 200 --> .loginFailure
-                handle(.failure(.loginFailure))
-                return
-            }
-        }
-    }
-    
-    static func attemptSignup(user: User, handle: @escaping (Result<(), AuthError>)->()) {
-        AF.request("\(baseURL)/signup", method: .post, parameters: user.encode()).response { response in
-            guard response.error == nil else {
-                handle(.failure(.usernameTaken))
                 return
             }
         }
