@@ -70,6 +70,8 @@ class EventAPIClient {
                 
                 return
             }
+            
+            handle(.success(()))
         }
     }
 }

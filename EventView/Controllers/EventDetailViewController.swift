@@ -24,6 +24,10 @@ class EventDetailViewController: UIViewController {
     // Setup the visuals of the detail VC from what is in the model.
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadDataFromEvent()
+    }
+    
+    func loadDataFromEvent() {
         locationLabel.text = event.location
         attendanceCount.text = "\(event.attending)"
         startLabel.text = event.start
@@ -32,5 +36,18 @@ class EventDetailViewController: UIViewController {
     }
     
     @IBAction func toggleAttending(_ sender: Any) {
+        let increment = isAttending.isOn ? 1 : -1
+        event.attending += increment
+        loadDataFromEvent()
+        guard increment > 0 else {return}
+        
+        EventAPIClient.setUserIsAttendingEventWith(eventID: "\(event.id)", handle: { result in
+            switch result {
+            case .success:
+                print("hooray!")
+            case .failure(let error):
+                print(error)
+            }
+        })
     }
 }

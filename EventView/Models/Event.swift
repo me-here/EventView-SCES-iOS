@@ -22,6 +22,6 @@ struct Event: Codable {
     
     let location: String
     
-    /// Number of people attending event
-    let attending: Int
+    /// Number of people attending event, can get and set
+    var attending: Int
 }
