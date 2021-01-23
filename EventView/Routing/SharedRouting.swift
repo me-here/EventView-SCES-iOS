@@ -1,5 +1,5 @@
 //
-//  RoutingConstants.swift
+//  SharedRouting.swift
 //  EventView
 //
 //  Created by Mihir Thanekar on 1/22/21.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct RoutingConstants {
+struct SharedRouting {
     static let baseURL: String = "https://jir8pypexa.execute-api.us-west-1.amazonaws.com/api"
 }

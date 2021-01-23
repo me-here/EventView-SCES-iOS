@@ -12,9 +12,10 @@ import Alamofire
 enum AuthError: String, Error {
     case loginFailure = "Sorry, your credentials were invalid or non-existent. Please try again."
     case usernameTaken = "Sorry, that username is already taken. Please take another one."
+    case networkError = "Due to a network error, we were unable to fulfill your request."
 }
 
-// MARK: Authentication Protocol allows you to call all authentication objects the same way.
+// MARK: Authentication Protocol treats all authentication objects the same way.
 protocol Authentication {
     func authenticate(user: User, handle: @escaping (Result<(), AuthError>)->())
 }
@@ -22,11 +23,21 @@ protocol Authentication {
 // The Login case.
 struct Login: Authentication {
     func authenticate(user: User, handle: @escaping (Result<(), AuthError>) -> ()) {
-        AF.request("\(RoutingConstants.baseURL)/login", method: .post, parameters: user.encode()).response { response in
-            guard response.error == nil else {  // Not 200 --> .loginFailure
-                handle(.failure(.loginFailure))
+        AF.request("\(SharedRouting.baseURL)/login",
+            method: .post,
+            parameters: user.encode(),
+            encoder: JSONParameterEncoder.default
+        ).response { response in
+            guard response.response?.statusCode == 200 else {
+                switch response.response?.statusCode {
+                case 401:
+                    handle(.failure(.loginFailure))
+                default:
+                    handle(.failure(.networkError))
+                }
                 return
             }
+            handle(.success(()))
         }
     }
 }
@@ -34,11 +45,21 @@ struct Login: Authentication {
 // The Authentication case.
 struct Register: Authentication {
     func authenticate(user: User, handle: @escaping (Result<(), AuthError>) -> ()) {
-        AF.request("\(RoutingConstants.baseURL)/signup", method: .post, parameters: user.encode()).response { response in
-            guard response.error == nil else {
-                handle(.failure(.usernameTaken))
+        AF.request("\(SharedRouting.baseURL)/signup",
+            method: .post,
+            parameters: user.encode(),
+            encoder: JSONParameterEncoder.default
+        ).response { response in
+            guard response.response?.statusCode == 200 else {
+                switch response.response?.statusCode {
+                case 400:
+                    handle(.failure(.usernameTaken))
+                default:
+                    handle(.failure(.networkError))
+                }
                 return
             }
+            handle(.success(()))
         }
     }
 }
@@ -61,7 +82,7 @@ enum AuthMode {
     var authentication: Authentication {
         switch self {
         case .register:
-            return Login()
+            return Register()
         case .signIn:
             return Login()
         }

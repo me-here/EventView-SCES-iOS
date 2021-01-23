@@ -61,7 +61,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9BP-mX-DRe" kind="presentation" modalPresentationStyle="fullScreen" id="PDq-N1-t7l"/>
+                                    <action selector="authenticateButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fmu-qy-rJc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5O-ev-8gU">
@@ -106,11 +106,12 @@
                         <outlet property="mainActionButton" destination="jtb-WK-CfK" id="eo0-N8-ck3"/>
                         <outlet property="passwordField" destination="VZE-FP-DQN" id="gwo-GT-omB"/>
                         <outlet property="usernameField" destination="SsE-1i-qc6" id="1DQ-Lf-XJI"/>
+                        <segue destination="9BP-mX-DRe" kind="presentation" identifier="authenticationSegue" modalPresentationStyle="fullScreen" id="f2c-wd-lW7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="129.91071428571428"/>
+            <point key="canvasLocation" x="112" y="130"/>
         </scene>
         <!--Events-->
         <scene sceneID="INK-uj-v2S">
@@ -337,7 +338,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8L8-4W-Q9S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2482.608695652174" y="133.69565217391306"/>
+            <point key="canvasLocation" x="2422" y="130"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="StG-3g-uC2">

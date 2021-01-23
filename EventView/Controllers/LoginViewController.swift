@@ -23,5 +23,17 @@ class LoginViewController: UIViewController {
         mainActionButton.setTitle(authMode.name, for: .normal)
     }
     
+    // Validate authentication attempt.
+    @IBAction func authenticateButtonTapped(_ sender: UIButton) {
+        let user = User(username: "mihi", password: "banana")
+        authMode.authentication.authenticate(user: user, handle: { result in
+            switch result {
+            case .success:
+                self.performSegue(withIdentifier: "authenticationSegue", sender: self)
+            case .failure(let error):
+                self.showError(message: error.rawValue)
+            }
+        })
+    }
 }
 
