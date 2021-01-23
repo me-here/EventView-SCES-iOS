@@ -12,6 +12,7 @@ struct User: Codable {
     let username: String
     let password: String
     
+    /// Returns a dictionary encoding of the User object.
     func encode() -> [String: String] {
         return [
             "username": self.username,

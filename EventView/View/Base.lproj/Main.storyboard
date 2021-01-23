@@ -183,7 +183,7 @@
                                     <outlet property="locationLabel" destination="95K-tO-oQZ" id="7iL-jt-beJ"/>
                                     <outlet property="nameLabel" destination="Gqr-VF-pUA" id="A2I-sh-Lh5"/>
                                     <outlet property="startDateLabel" destination="lqU-MU-yTp" id="6oo-Q4-RAy"/>
-                                    <segue destination="gRY-BW-vr3" kind="show" id="TAe-rW-O6Q"/>
+                                    <segue destination="gRY-BW-vr3" kind="show" identifier="eventDetailSegue" id="TAe-rW-O6Q"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -201,13 +201,13 @@
         <!--Event Name-->
         <scene sceneID="hnc-pb-R79">
             <objects>
-                <viewController id="gRY-BW-vr3" sceneMemberID="viewController">
+                <viewController id="gRY-BW-vr3" customClass="EventDetailViewController" customModule="EventView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q1I-ZI-xbO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="bdF-5F-IVM">
-                                <rect key="frame" x="91.666666666666686" y="239.66666666666663" width="231" height="301"/>
+                                <rect key="frame" x="91.666666666666686" y="194.66666666666663" width="231" height="391"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="OGh-Bd-BHs">
                                         <rect key="frame" x="0.0" y="0.0" width="231" height="30"/>
@@ -226,8 +226,25 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6MT-7a-hP4">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sdx-9D-tg8">
                                         <rect key="frame" x="0.0" y="90.000000000000028" width="231" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ua4-kh-e7g">
+                                                <rect key="frame" x="0.0" y="0.0" width="135.66666666666666" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwx-QC-LV4">
+                                                <rect key="frame" x="169.33333333333331" y="0.0" width="61.666666666666657" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6MT-7a-hP4">
+                                        <rect key="frame" x="0.0" y="180.00000000000003" width="231" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xk-7a-M5s">
                                                 <rect key="frame" x="0.0" y="0.0" width="61.333333333333336" height="30"/>
@@ -244,7 +261,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dSS-NK-3ER">
-                                        <rect key="frame" x="0.0" y="180.00000000000003" width="231" height="30"/>
+                                        <rect key="frame" x="0.0" y="270" width="231" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5U-Jz-sfA">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
@@ -261,7 +278,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Mxd-Vh-pgL">
-                                        <rect key="frame" x="0.0" y="270" width="231" height="31"/>
+                                        <rect key="frame" x="0.0" y="360" width="231" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attending?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oux-So-X2N">
                                                 <rect key="frame" x="0.0" y="0.0" width="94" height="31"/>
@@ -271,6 +288,9 @@
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8Rd-DL-iyS">
                                                 <rect key="frame" x="182" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="toggleAttending:" destination="gRY-BW-vr3" eventType="valueChanged" id="PrX-Ez-fiI"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                     </stackView>
@@ -285,6 +305,13 @@
                         <viewLayoutGuide key="safeArea" id="dNy-1O-15B"/>
                     </view>
                     <navigationItem key="navigationItem" title="Event Name" id="wEl-gE-nJH"/>
+                    <connections>
+                        <outlet property="attendanceCount" destination="nwx-QC-LV4" id="LFw-YF-5v8"/>
+                        <outlet property="endLabel" destination="ISi-KK-nxB" id="ERd-Mj-CpR"/>
+                        <outlet property="isAttending" destination="8Rd-DL-iyS" id="Q8I-ci-JiA"/>
+                        <outlet property="locationLabel" destination="Keq-XL-6CS" id="pyb-m6-gFg"/>
+                        <outlet property="startLabel" destination="oDA-ex-y1W" id="RMv-OZ-ecM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8L8-4W-Q9S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

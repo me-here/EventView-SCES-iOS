@@ -41,7 +41,6 @@ class EventsTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath) as? EventTableViewCell else {
             return UITableViewCell()
         }
-        print(eventList[indexPath.row].location)
         cell.configure(eventList[indexPath.row])
         return cell
     }
@@ -50,7 +49,10 @@ class EventsTableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "eventDetailSegue" {
+            guard let detailVC = segue.destination as? EventDetailViewController else {return}
+            guard let rowTapped = tableView.indexPathForSelectedRow?.row else {return}
+            detailVC.preConfigure(eventList[rowTapped])
+        }
     }
 }
