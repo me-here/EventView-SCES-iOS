@@ -16,6 +16,25 @@ class LoginViewController: UIViewController {
     @IBOutlet var mainActionButton: UIButton!
     var authMode: AuthMode = .signIn
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        usernameField.delegate = self
+        passwordField.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        guard view.frame.origin.y == 0 else { return }  // only move up if keyboard is at bottom
+        guard let keyboardRect = notification.userInfo?["UIKeyboardBoundsUserInfoKey"] as? CGRect else { return }
+        view.frame.origin.y -= keyboardRect.height
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        guard view.frame.origin.y != 0 else { return }  // what's the point of moving down if at bottom
+        view.frame.origin.y = 0
+    }
+    
     // Switches between login and register modes.
     @IBAction func switchModeButtonTapped(_ sender: UIButton) {
         authMode = authMode.other
@@ -34,6 +53,13 @@ class LoginViewController: UIViewController {
                 self.showError(message: error.rawValue)
             }
         })
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
