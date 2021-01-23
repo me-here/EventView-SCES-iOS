@@ -24,6 +24,8 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    // MARK: moving keyboard up and down
+    
     @objc func keyboardWillShow(notification: Notification) {
         guard view.frame.origin.y == 0 else { return }  // only move up if keyboard is at bottom
         guard let keyboardRect = notification.userInfo?["UIKeyboardBoundsUserInfoKey"] as? CGRect else { return }
@@ -44,7 +46,9 @@ class LoginViewController: UIViewController {
     
     // Validate authentication attempt.
     @IBAction func authenticateButtonTapped(_ sender: UIButton) {
-        let user = User(username: "mihi", password: "banana")
+        guard let username = usernameField.text else {return}
+        guard let password = passwordField.text else {return}
+        let user = User(username: username, password: password)
         authMode.authentication.authenticate(user: user, handle: { result in
             switch result {
             case .success:
@@ -57,6 +61,7 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: UITextFieldDelegate {
+    // Pressing return dismisses the keyboard.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
