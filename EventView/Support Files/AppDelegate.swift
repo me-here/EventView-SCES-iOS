@@ -15,10 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        if let cachedUser = CredentialManager().getUserFromCachedCredentials() {
-            print(cachedUser.username)
-            print(cachedUser.password)
-        }
         return true
     }
 

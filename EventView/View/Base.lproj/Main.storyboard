@@ -343,7 +343,7 @@
         <!--Navigation Controller-->
         <scene sceneID="StG-3g-uC2">
             <objects>
-                <navigationController id="9BP-mX-DRe" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loggedInNavigationController" id="9BP-mX-DRe" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ecO-FE-8tY"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kad-y5-xBo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
