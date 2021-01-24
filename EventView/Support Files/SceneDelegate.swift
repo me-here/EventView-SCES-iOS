@@ -18,23 +18,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        if let cachedUser = CredentialManager().getUserFromCachedCredentials() {
-            print(cachedUser.username)
-            print(cachedUser.password)
-            Login().authenticate(user: cachedUser, handle: { result in
-                switch result {
-                case .success:
-                    return
-                case .failure:
-                    print("Something went wrong with login, we will send you back to the login screen.")
-                }
-            })
-            
-            // Bypass login, set initial VC: https://developer.apple.com/forums/thread/111108
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loggedInVC = storyboard.instantiateViewController(identifier: "loggedInNavigationController")
-            self.window?.rootViewController = loggedInVC
-        }
+//        if let cachedUser = CredentialManager().getUserFromCachedCredentials() {
+//            print(cachedUser.username)
+//            print(cachedUser.password)
+//            Login().authenticate(user: cachedUser, handle: { result in
+//                switch result {
+//                case .success:
+//                    return
+//                case .failure:
+//                    print("Something went wrong with login, we will send you back to the login screen.")
+//                }
+//            })
+//            
+//            // Bypass login, set initial VC: https://developer.apple.com/forums/thread/111108
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let loggedInVC = storyboard.instantiateViewController(identifier: "loggedInNavigationController")
+//            self.window?.rootViewController = loggedInVC
+//        }
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
