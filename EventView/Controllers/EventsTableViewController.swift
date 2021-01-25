@@ -14,12 +14,21 @@ class EventsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupRefreshControl()
         loadEventList()
     }
     
+    // Configures the pull to refresh to reload the table view.
+    private func setupRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(loadEventList), for: .valueChanged)
+    }
+    
     // Fetches the events from the API and reloads the table with that data.
-    func loadEventList() {
+    @objc private func loadEventList() {
         EventAPIClient.getEventList(handle: { result in
+            self.tableView.refreshControl?.endRefreshing()
+            
             switch result {
             case .success(let events):
                 self.eventList = events
@@ -29,21 +38,6 @@ class EventsTableViewController: UITableViewController {
             }
         })
     }
-
-    // MARK: - Table view data source
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventList.count
-    }
-
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath) as? EventTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.configure(eventList[indexPath.row])
-        return cell
-    }
-
     
     // Tapping on a row in the table configures the detail VC with the Event model data it needs.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -60,5 +54,21 @@ class EventsTableViewController: UITableViewController {
         guard let loginVC = storyboard?.instantiateInitialViewController() else { return }
         loginVC.modalPresentationStyle = .fullScreen
         present(loginVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Table view data source
+extension EventsTableViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return eventList.count
+    }
+
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath) as? EventTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(eventList[indexPath.row])
+        return cell
     }
 }
