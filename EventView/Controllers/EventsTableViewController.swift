@@ -53,6 +53,13 @@ class EventsTableViewController: UITableViewController {
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
-        navigationController?.dismiss(animated: true, completion: nil)
+        CredentialManager().deleteUserCredential()
+        guard let loginVC = storyboard?.instantiateInitialViewController() else
+        {
+            return
+        }
+        loginVC.modalPresentationStyle = .fullScreen
+//        loginVC.modalTransitionStyle = .flipHorizontal
+        present(loginVC, animated: true, completion: nil)
     }
 }

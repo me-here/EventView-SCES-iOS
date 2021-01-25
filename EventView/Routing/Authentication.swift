@@ -65,14 +65,11 @@ struct Register: Authentication {
 }
 
 struct CredentialManager {
-    private static let protectionSpace = URLProtectionSpace(host: SharedRouting.baseURL, port: 80, protocol: "https", realm: "Restricted", authenticationMethod: NSURLAuthenticationMethodHTTPBasic)
+    static let protectionSpace = URLProtectionSpace(host: SharedRouting.baseURL, port: 80, protocol: "https", realm: "Restricted", authenticationMethod: NSURLAuthenticationMethodHTTPBasic)
     
     /// Caches the credentials from a given User object into URLCredentialStorage, if it is not already in URLCredentialStorage.
     func saveCredentials(user: User) {
         let credential = URLCredential(user: user.username, password: user.password, persistence: .permanent)
-        guard let storedCred = URLCredentialStorage.shared.credentials(for: CredentialManager.protectionSpace)?[user.username], storedCred.user != credential.user, storedCred.password != credential.password else {
-            return
-        }
         URLCredentialStorage.shared.set(credential, for: CredentialManager.protectionSpace)
     }
     
@@ -81,6 +78,12 @@ struct CredentialManager {
         guard let username = credential.user else { return nil }
         guard let password = credential.password else { return nil }
         return User(username: username, password: password)
+    }
+    
+    /// Tries to delete a credential, returns whether the operation was successful.
+    func deleteUserCredential() {
+        guard let credential = URLCredentialStorage.shared.defaultCredential(for: CredentialManager.protectionSpace) else { return }
+        URLCredentialStorage.shared.remove(credential, for: CredentialManager.protectionSpace)
     }
 }
 
