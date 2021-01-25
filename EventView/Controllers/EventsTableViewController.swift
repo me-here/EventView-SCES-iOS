@@ -9,12 +9,16 @@
 import UIKit
 
 class EventsTableViewController: UITableViewController {
-    
+    // Stores the list of events we get from the API.
     var eventList: [Event] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadEventList()
+    }
+    
+    // Fetches the events from the API and reloads the table with that data.
+    func loadEventList() {
         EventAPIClient.getEventList(handle: { result in
             switch result {
             case .success(let events):
@@ -27,7 +31,6 @@ class EventsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventList.count
     }
@@ -42,24 +45,20 @@ class EventsTableViewController: UITableViewController {
     }
 
     
-    // MARK: - Navigation
-
+    // Tapping on a row in the table configures the detail VC with the Event model data it needs.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "eventDetailSegue" {
-            guard let detailVC = segue.destination as? EventDetailViewController else {return}
-            guard let rowTapped = tableView.indexPathForSelectedRow?.row else {return}
+            guard let detailVC = segue.destination as? EventDetailViewController else { return }
+            guard let rowTapped = tableView.indexPathForSelectedRow?.row else { return }
             detailVC.preConfigure(eventList[rowTapped])
         }
     }
     
+    // Logout, forget credential, and come back to the initial VC.
     @IBAction func logoutPressed(_ sender: Any) {
         CredentialManager().deleteUserCredential()
-        guard let loginVC = storyboard?.instantiateInitialViewController() else
-        {
-            return
-        }
+        guard let loginVC = storyboard?.instantiateInitialViewController() else { return }
         loginVC.modalPresentationStyle = .fullScreen
-//        loginVC.modalTransitionStyle = .flipHorizontal
         present(loginVC, animated: true, completion: nil)
     }
 }

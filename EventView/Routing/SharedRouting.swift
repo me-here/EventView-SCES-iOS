@@ -9,5 +9,6 @@
 import Foundation
 
 struct SharedRouting {
+    // The URL of the EventView API from which all endpoints begin.
     static let baseURL: String = "https://jir8pypexa.execute-api.us-west-1.amazonaws.com/api"
 }

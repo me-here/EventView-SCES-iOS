@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIViewController {
+    // A function we can call to show an alert when something goes wrong.
     func showError(title: String = "Error", message: String = "Something went wrong!", completion: ((UIAlertAction)->())? = nil) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(.init(title: "Dismiss", style: .default, handler: completion ?? nil))

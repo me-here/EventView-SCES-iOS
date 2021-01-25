@@ -15,7 +15,7 @@ enum AuthError: String, Error {
     case networkError = "Due to a network error, we were unable to fulfill your request."
 }
 
-// MARK: Authentication Protocol treats all authentication objects the same way.
+// MARK: Authentication Protocol acts as an interface for authentication objects (Login and Register).
 protocol Authentication {
     func authenticate(user: User, handle: @escaping (Result<(), AuthError>)->())
 }
@@ -64,6 +64,7 @@ struct Register: Authentication {
     }
 }
 
+// MARK: Caching Login details in URLCredentialStorage.
 struct CredentialManager {
     static let protectionSpace = URLProtectionSpace(host: SharedRouting.baseURL, port: 80, protocol: "https", realm: "Restricted", authenticationMethod: NSURLAuthenticationMethodHTTPBasic)
     
@@ -88,7 +89,7 @@ struct CredentialManager {
 }
 
 // MARK: User facing view of states in auth.
-
+// AuthMode acts as a factory for Authentication objects.
 enum AuthMode {
     case signIn
     case register

@@ -37,11 +37,12 @@ class EventDetailViewController: UIViewController {
     }
     
     @IBAction func toggleAttending(_ sender: Any) {
-        let increment = isAttending.isOn ? 1 : -1
+        let increment = isAttending.isOn ? 1 : 0    // Does not decrement on off, because API does not either.
         event.attending += increment
-        loadDataFromEvent()
+        loadDataFromEvent()                         // reload the view according to model changes.
         guard increment > 0 else {return}
         
+        // Tell the API of the update in attendance (only if we toggled from off to on, since the API does not handle decrements).
         EventAPIClient.setUserIsAttendingEventWith(eventID: "\(event.id)", handle: { result in
             switch result {
             case .success:

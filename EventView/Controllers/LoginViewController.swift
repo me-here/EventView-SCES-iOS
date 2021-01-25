@@ -16,7 +16,7 @@ class LoginViewController: UIViewController {
     // The main purple button you press to login or register.
     @IBOutlet var mainActionButton: UIButton!
     
-    // The auth mode is initially in the sign in state.
+    // The current authentication mode for the main action button, initially in the sign in state.
     var authMode: AuthMode = .signIn
     
     override func viewDidLoad() {
@@ -30,12 +30,11 @@ class LoginViewController: UIViewController {
         passwordField.delegate = self
     }
     
+    // MARK: moving keyboard up and down to ensure text field is visible.
     private func setupKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
-    // MARK: moving keyboard up and down
     
     @objc func keyboardWillShow(notification: Notification) {
         guard view.frame.origin.y == 0 else { return }  // only move up if keyboard is at bottom
@@ -55,7 +54,7 @@ class LoginViewController: UIViewController {
         mainActionButton.setTitle(authMode.name, for: .normal)
     }
     
-    // Validate authentication attempt.
+    // MARK: Login or register if authentication attempt is valid.
     @IBAction func authenticateButtonTapped(_ sender: UIButton) {
         guard let username = usernameField.text else {return}
         guard let password = passwordField.text else {return}
