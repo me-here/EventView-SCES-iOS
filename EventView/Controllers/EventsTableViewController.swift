@@ -19,6 +19,7 @@ class EventsTableViewController: UITableViewController {
     }
     
     // Configures the pull to refresh to reload the table view.
+    // Helpful Blog: https://cocoacasts.com/how-to-add-pull-to-refresh-to-a-table-view-or-collection-view
     private func setupRefreshControl() {
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(loadEventList), for: .valueChanged)
