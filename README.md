@@ -7,9 +7,8 @@ Built with UIKit, Alamofire, & the EventView API.
 4. Add your signing certificate
 5. Run it :)
 
-![Login Screen](https://www.dropbox.com/s/lr9r4w8jvmmbtiw/Screen%20Shot%202021-01-23%20at%2012.21.44%20AM.png?raw=1)
+![Login Screen](https://www.dropbox.com/s/27b7vkkdecdq8pg/Screen%20Shot%202021-01-26%20at%205.22.22%20PM.png?raw=1)
 ![Event Table View](https://www.dropbox.com/s/cynbfx0oy7qkxaw/Screen%20Shot%202021-01-23%20at%2012.22.52%20AM.png?raw=1)
-![Event Table View](https://www.dropbox.com/s/ojvt8d55pii7h71/Screen%20Shot%202021-01-23%20at%2012.23.08%20AM.png?raw=1)
 
 ## Features
 *Authentication*
@@ -31,6 +30,6 @@ complete set of information about the corresponding event (except the ID).
 
 ## Additional Features
 - [X] Add constraints so that the interface scales to different screen sizes
-- [ ] Allow users to refresh in the table and/or detail view
+- [X] Allow users to refresh in the table view.
 - [X] Cache the user’s credentials so that they stay logged in after exiting the app
-- [ ] Launch Screen & Logo.
+- [X] Launch Screen & Logo.
