@@ -43,7 +43,7 @@ class EventDetailViewController: UIViewController {
         guard increment > 0 else {return}
         
         // Tell the API of the update in attendance (only if we toggled from off to on, since the API does not handle decrements).
-        EventAPIClient.setUserIsAttendingEventWith(eventID: "\(event.id)", handle: { result in
+        EventAPIClient().setUserIsAttendingEventWith(eventID: "\(event.id)", handle: { result in
             switch result {
             case .success:
                 break

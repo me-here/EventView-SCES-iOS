@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  EventView
 //
 //  Created by Mihir Thanekar on 1/20/21.

@@ -27,7 +27,7 @@ class EventsTableViewController: UITableViewController {
     
     // Fetches the events from the API and reloads the table with that data.
     @objc private func loadEventList() {
-        EventAPIClient.getEventList(handle: { result in
+        EventAPIClient().getEventList(handle: { result in
             self.tableView.refreshControl?.endRefreshing()
             
             switch result {

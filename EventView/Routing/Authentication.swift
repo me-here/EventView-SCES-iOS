@@ -21,6 +21,7 @@ protocol Authentication {
 }
 
 // The Login case.
+// Login with this user, 200 is success, 401 is login failure, else networkError.
 struct Login: Authentication {
     func authenticate(user: User, handle: @escaping (Result<(), AuthError>) -> ()) {
         AF.request("\(SharedRouting.baseURL)/login",
@@ -42,7 +43,8 @@ struct Login: Authentication {
     }
 }
 
-// The Authentication case.
+// The Registration case of Authentication.
+// Sign up with this user, code 200 is success, 400 is username taken, else network error.
 struct Register: Authentication {
     func authenticate(user: User, handle: @escaping (Result<(), AuthError>) -> ()) {
         AF.request("\(SharedRouting.baseURL)/signup",
@@ -66,6 +68,7 @@ struct Register: Authentication {
 
 // MARK: Caching Login details in URLCredentialStorage.
 struct CredentialManager {
+    /// An object identifying the API for which we will use credential caching.
     static let protectionSpace = URLProtectionSpace(host: SharedRouting.baseURL, port: 80, protocol: "https", realm: "Restricted", authenticationMethod: NSURLAuthenticationMethodHTTPBasic)
     
     /// Caches the credentials from a given User object into URLCredentialStorage, if it is not already in URLCredentialStorage.
@@ -81,7 +84,7 @@ struct CredentialManager {
         return User(username: username, password: password)
     }
     
-    /// Tries to delete a credential, returns whether the operation was successful.
+    /// Tries to delete a credential. Don't mind the extra log output -- it does not break anything, and is a github issue of the library.
     func deleteUserCredential() {
         guard let credential = URLCredentialStorage.shared.defaultCredential(for: CredentialManager.protectionSpace) else { return }
         URLCredentialStorage.shared.remove(credential, for: CredentialManager.protectionSpace)
@@ -89,11 +92,12 @@ struct CredentialManager {
 }
 
 // MARK: User facing view of states in auth.
-// AuthMode acts as a factory for Authentication objects.
+/// A factory for Authentication objects.
 enum AuthMode {
     case signIn
     case register
     
+    /// Construct the textual description associated to the authentication mode.
     var name: String {
         switch self {
         case .register:
@@ -103,6 +107,7 @@ enum AuthMode {
         }
     }
     
+    /// Construct the object associated to the authentication mode.
     var authentication: Authentication {
         switch self {
         case .register:
@@ -112,6 +117,7 @@ enum AuthMode {
         }
     }
     
+    /// A getter for the other Authentication mode. Useful for toggling between them.
     var other: AuthMode {
         return self == .signIn ? .register : .signIn
     }

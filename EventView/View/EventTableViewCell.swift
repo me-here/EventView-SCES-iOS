@@ -14,6 +14,7 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet var startDateLabel: UILabel!
     @IBOutlet var endDateLabel: UILabel!
     
+    /// Sets appropriate outlet contents to display the cell.
     func configure(_ event: Event) {
         nameLabel.text = event.name
         locationLabel.text = event.location

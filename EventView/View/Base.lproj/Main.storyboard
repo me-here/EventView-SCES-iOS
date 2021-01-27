@@ -142,10 +142,10 @@
             </objects>
             <point key="canvasLocation" x="112" y="130"/>
         </scene>
-        <!--Events-->
+        <!--Events Table-->
         <scene sceneID="INK-uj-v2S">
             <objects>
-                <tableViewController id="q1j-U0-vak" customClass="EventsTableViewController" customModule="EventView" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Events Table" id="q1j-U0-vak" customClass="EventsTableViewController" customModule="EventView" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dJB-pL-P3v">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -256,10 +256,10 @@
             </objects>
             <point key="canvasLocation" x="1653.6231884057972" y="129.61956521739131"/>
         </scene>
-        <!--Event Name-->
+        <!--Event Detail-->
         <scene sceneID="hnc-pb-R79">
             <objects>
-                <viewController id="gRY-BW-vr3" customClass="EventDetailViewController" customModule="EventView" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Event Detail" id="gRY-BW-vr3" customClass="EventDetailViewController" customModule="EventView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q1I-ZI-xbO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
